@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27625.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LogicMonitor.Api.Test", "LogicMonitor.Api.Test\LogicMonitor.Api.Test.pyproj", "{6AA84336-1AA8-4AFC-A4E6-93D21865D87F}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LogicMonitor.Api", "LogicMonitor.Api\LogicMonitor.Api.pyproj", "{DF918541-25E4-4192-A568-492F894159F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F68E802B-00DC-486C-B033-A53E4545A951}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AA84336-1AA8-4AFC-A4E6-93D21865D87F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AA84336-1AA8-4AFC-A4E6-93D21865D87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF918541-25E4-4192-A568-492F894159F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF918541-25E4-4192-A568-492F894159F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E12EA047-FB23-4E6E-90BE-05D3BE5157A4}
+	EndGlobalSection
+EndGlobal
