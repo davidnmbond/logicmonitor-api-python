@@ -21,14 +21,14 @@ class Tests(unittest.TestCase):
 	"""
 	Get a device
 	"""
-	def test_getDevice_passes(self):
+	def test_01_getDevice_passes(self):
 		device = self._client.get('/device/devices/{0}'.format(self._config['exampleDeviceId']))
 		self.assertEqual(self._config['exampleDeviceId'], device['id'])
 
 	"""
 	Create a device SDT
 	"""
-	def test_createDeviceSdt_passes(self):
+	def test_02_createDeviceSdt_passes(self):
 		sdt_start_time = int(time.time() * 1000)
 		sdt_end_time = sdt_start_time + int(30 * 60 * 1000)  # 30 minute SDT
 		sdt_comment = 'Test SDT Started At Time ' + str(sdt_start_time)
@@ -45,7 +45,15 @@ class Tests(unittest.TestCase):
 		self.assertEqual(sdt['comment'], sdt_comment)
 		self.assertEqual(sdt['startDateTime'], sdt_start_time)
 		self.assertEqual(sdt['endDateTime'], sdt_end_time)
-		self._sdt_id = sdt['id'] # Store SDT id so we can refer to it later
+		Tests._sdt_id = sdt['id'] # Store SDT id so we can refer to it later
+
+	"""
+	Get a device SDT
+	"""
+	def test_03_getDeviceSdt_passes(self):
+		sdt = self._client.get('/sdt/sdts/{}'.format(self._sdt_id))
+		self.assertEqual(Tests._sdt_id, sdt['id'])
+
 """
 Main
 """
