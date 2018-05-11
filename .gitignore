@@ -101,3 +101,6 @@ ENV/
 .mypy_cache/
 /.vs/config
 /LogicMonitor.Api.Test/appsettings.json
+
+# VS Code IDE
+.vscode/
