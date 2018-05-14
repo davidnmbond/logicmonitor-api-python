@@ -27,9 +27,24 @@ class Tests(unittest.TestCase):
 		self.assertEqual(self._config['exampleDeviceId'], device['id'])
 
 	"""
+	Update a specific field of a device (HTTP PATCH)
+	"""
+	def test_02_updateDeviceField_passes(self):
+		updated_description = 'some new description for this device'
+		device_data = json.dumps({
+			'description': updated_description
+		})
+		device = self._client.patch(
+			'/device/devices/{}'.format(self._config['exampleDeviceId']), 
+			queryParams='?patchFields=description',
+			data=device_data)
+		self.assertEqual(device['id'], self._config['exampleDeviceId'])
+		self.assertEqual(updated_description, device['description'])
+
+	"""
 	Create a device SDT
 	"""
-	def test_02_createDeviceSdt_passes(self):
+	def test_03_createDeviceSdt_passes(self):
 		sdt_start_time = int(time.time() * 1000)
 		sdt_end_time = sdt_start_time + int(30 * 60 * 1000)  # 30 minute SDT
 		sdt_comment = 'Test SDT Started At Time ' + str(sdt_start_time)
@@ -51,14 +66,14 @@ class Tests(unittest.TestCase):
 	"""
 	Get a device SDT
 	"""
-	def test_03_getDeviceSdt_passes(self):
+	def test_04_getDeviceSdt_passes(self):
 		sdt = self._client.get('/sdt/sdts/{}'.format(self._sdt_id))
 		self.assertEqual(Tests._sdt_id, sdt['id'])
 
 	"""
 	Update a device SDT
 	"""
-	def test_04_updateDeviceSdt_passes(self):
+	def test_05_updateDeviceSdt_passes(self):
 		sdt_start_time = int(time.time() * 1000) + (60 * 60 * 1000) # Start SDT an hour from now
 		sdt_end_time = sdt_start_time + (180 * 60 * 1000) # 3 hour SDT duration
 		sdt_comment = 'SDT updated at {}'.format(int(time.time() * 1000))
@@ -79,7 +94,7 @@ class Tests(unittest.TestCase):
 	"""
 	Delete a device SDT
 	"""
-	def test_05_deleteDeviceSdt_passes(self):
+	def test_06_deleteDeviceSdt_passes(self):
 		deleted_sdt = self._client.delete('/sdt/sdts/{}'.format(Tests._sdt_id))
 		self.assertIsNone(deleted_sdt)
 

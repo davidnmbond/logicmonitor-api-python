@@ -52,6 +52,8 @@ class LogicMonitorClient:
 			response = requests.post(url, data=data, headers=headers)
 		elif httpVerb == 'PUT':
 			response = requests.put(url, data=data, headers=headers)
+		elif httpVerb == 'PATCH':
+			response = requests.patch(url, data=data, headers=headers)
 		elif httpVerb == 'DELETE':
 			response = requests.delete(url, data=data, headers=headers)
 		else:
@@ -131,6 +133,25 @@ class LogicMonitorClient:
 		entity = json.loads(response.content)['data']
 		return entity
 
+	"""
+	HTTP PATCH
+	:param resourcePath: The resource path
+	:param queryParams: Optional query parameters
+	:param data: Request parameters
+	"""
+	def patch(self, resourcePath, queryParams = '', data = ''):
+		response = self.response('PATCH', resourcePath, queryParams, data)
+
+		# Status code OK?
+		if(200 != response.status_code):
+			# No
+			raise ValueError('Non-200 response code: {0}'.format(response.status_code))
+		# Yes
+
+		# Return the data node
+		entity = json.loads(response.content)['data']
+		return entity
+	
 	"""
 	HTTP DELETE
 	:param resourcePath: The resource path
