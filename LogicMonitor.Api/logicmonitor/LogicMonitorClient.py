@@ -46,7 +46,18 @@ class LogicMonitorClient:
 		}
 
 		#Make request
-		response = requests.get(url, data=data, headers=headers)
+		if httpVerb == 'GET':
+			response = requests.get(url, data=data, headers=headers)
+		elif httpVerb == 'POST':
+			response = requests.post(url, data=data, headers=headers)
+		elif httpVerb == 'PUT':
+			response = requests.put(url, data=data, headers=headers)
+		elif httpVerb == 'PATCH':
+			response = requests.patch(url, data=data, headers=headers)
+		elif httpVerb == 'DELETE':
+			response = requests.delete(url, data=data, headers=headers)
+		else:
+			raise ValueError('HTTP method "{}" is not supported by the LogicMonitor API!'.format(httpVerb))
 
 		return response
 
@@ -80,6 +91,82 @@ class LogicMonitorClient:
 			raise ValueError('Non-200 response code: {0}'.format(response.status_code))
 		# Yes
 		
+		# Return the data node
+		entity = json.loads(response.content)['data']
+		return entity
+
+	"""
+	HTTP POST
+	:param resourcePath: The resource path
+	:param queryParams: Optional query parameters
+	:param data: Request parameters
+	"""
+	def post(self, resourcePath, queryParams = '', data = ''):
+		response = self.response('POST', resourcePath, queryParams, data)
+
+		# Status code OK?
+		if(200 != response.status_code):
+			# No
+			raise ValueError('Non-200 response code: {0}'.format(response.status_code))
+		# Yes
+
+		# Return the data node
+		entity = json.loads(response.content)['data']
+		return entity
+
+	"""
+	HTTP PUT
+	:param resourcePath: The resource path
+	:param queryParams: Optional query parameters
+	:param data: Request parameters
+	"""
+	def put(self, resourcePath, queryParams = '', data = ''):
+		response = self.response('PUT', resourcePath, queryParams, data)
+
+		# Status code OK?
+		if(200 != response.status_code):
+			# No
+			raise ValueError('Non-200 response code: {0}'.format(response.status_code))
+		# Yes
+
+		# Return the data node
+		entity = json.loads(response.content)['data']
+		return entity
+
+	"""
+	HTTP PATCH
+	:param resourcePath: The resource path
+	:param queryParams: Optional query parameters
+	:param data: Request parameters
+	"""
+	def patch(self, resourcePath, queryParams = '', data = ''):
+		response = self.response('PATCH', resourcePath, queryParams, data)
+
+		# Status code OK?
+		if(200 != response.status_code):
+			# No
+			raise ValueError('Non-200 response code: {0}'.format(response.status_code))
+		# Yes
+
+		# Return the data node
+		entity = json.loads(response.content)['data']
+		return entity
+	
+	"""
+	HTTP DELETE
+	:param resourcePath: The resource path
+	:param queryParams: Optional query parameters
+	:param data: Request parameters
+	"""
+	def delete(self, resourcePath, queryParams = '', data = ''):
+		response = self.response('DELETE', resourcePath, queryParams, data)
+
+		# Status code OK?
+		if(200 != response.status_code):
+			# No
+			raise ValueError('Non-200 response code: {0}'.format(response.status_code))
+		# Yes
+
 		# Return the data node
 		entity = json.loads(response.content)['data']
 		return entity

@@ -3,7 +3,7 @@ setup(
   name = 'logicmonitor',
   description = 'A LogicMonitor API client',
   packages = ['logicmonitor'],
-  version = '0.1.0',
+  version = '0.1.1',
   author = 'David Bond',
   author_email = 'david@davidbondnet',
   url = 'https://github.com/davidnmbond/logicmonitor-api-python',
