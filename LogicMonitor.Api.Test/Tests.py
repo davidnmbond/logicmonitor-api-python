@@ -76,6 +76,13 @@ class Tests(unittest.TestCase):
 		self.assertEqual(sdt['startDateTime'], sdt_start_time)
 		self.assertEqual(sdt['endDateTime'], sdt_end_time)
 
+	"""
+	Delete a device SDT
+	"""
+	def test_05_deleteDeviceSdt_passes(self):
+		deleted_sdt = self._client.delete('/sdt/sdts/{}'.format(Tests._sdt_id))
+		self.assertIsNone(deleted_sdt)
+
 """
 Main
 """
